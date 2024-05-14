@@ -55,4 +55,13 @@ export const pokemonRouter = createTRPCRouter({
         sprite: pokemon.sprite,
       }));
     }),
+  getAllTypes: publicProcedure.query(async ({ ctx }) => {
+    const types = await ctx.db.pokemonType.findMany({
+      distinct: ["type"],
+      select: {
+        type: true,
+      },
+    });
+    return types.map((t) => t.type);
+  }),
 });

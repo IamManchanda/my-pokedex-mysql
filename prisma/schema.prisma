@@ -1,26 +1,22 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "mysql"
-    url      = env("DATABASE_URL")
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 model Pokemon {
-  id      Int           @id @default(autoincrement())
-  name    String
-  sprite  String
-  types   PokemonType[]
+  id     Int           @id @default(autoincrement())
+  name   String
+  sprite String
+  types  PokemonType[] @relation("PokemonToPokemonType")
 }
 
 model PokemonType {
-  id        Int       @id @default(autoincrement())
+  id        Int     @id @default(autoincrement())
   type      String
   pokemonId Int
-  pokemon   Pokemon   @relation(fields: [pokemonId], references: [id])
+  pokemon   Pokemon @relation("PokemonToPokemonType", fields: [pokemonId], references: [id])
 }
-

@@ -35,12 +35,14 @@ async function main() {
       data: {
         name: pokemonData.name,
         sprite: pokemonData.sprite,
-        types: {
-          create: pokemonData.types.map((type) => ({
-            type,
-          })),
-        },
       },
+    });
+
+    await prisma.pokemonType.createMany({
+      data: pokemonData.types.map((type) => ({
+        type,
+        pokemonId: pokemon.id,
+      })),
     });
 
     console.log(

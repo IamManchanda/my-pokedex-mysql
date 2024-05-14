@@ -1,4 +1,7 @@
+// src/app/_components/PokemonTypeSelection.tsx
+import { useEffect, useState } from "react";
 import { Select, MenuItem, FormControl, InputLabel } from "@mui/material";
+import { api } from "~/trpc/react";
 
 type PokemonTypeSelectionProps = {
   selectedType: string | undefined;
@@ -9,16 +12,14 @@ export function PokemonTypeSelection({
   selectedType,
   selectType,
 }: PokemonTypeSelectionProps) {
-  const types = [
-    "grass",
-    "fire",
-    "water",
-    "electric",
-    "bug",
-    "poison",
-    "flying",
-    "normal",
-  ];
+  const [types, setTypes] = useState<string[]>([]);
+  const { data, error } = api.pokemon.getAllTypes.useQuery();
+
+  useEffect(() => {
+    if (data) {
+      setTypes(data);
+    }
+  }, [data]);
 
   return (
     <FormControl fullWidth>
@@ -36,6 +37,7 @@ export function PokemonTypeSelection({
           </MenuItem>
         ))}
       </Select>
+      {error && <p>Error fetching types: {error.message}</p>}
     </FormControl>
   );
 }

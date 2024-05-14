@@ -25,6 +25,17 @@
   margin-bottom: 1rem;
 }
 
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.partText {
+  font-size: 1.5rem;
+  color: #7f8c8d;
+  text-align: center;
+}
+
 .highlight {
   color: #e74c3c;
 }
@@ -60,6 +71,18 @@
   color: #7f8c8d;
 }
 
+.cardLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.formContainer {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 1rem;
+}
+
 .form {
   display: flex;
   flex-direction: column;
@@ -91,7 +114,6 @@
   background-color: #c0392b;
 }
 
-/* Table Styling */
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -102,7 +124,8 @@
   color: #fff;
 }
 
-.table th, .table td {
+.table th,
+.table td {
   padding: 1rem;
   text-align: left;
   border-bottom: 1px solid #ddd;
@@ -110,4 +133,8 @@
 
 .table th {
   font-weight: bold;
+}
+
+.backButton {
+  margin-bottom: 1rem;
 }
